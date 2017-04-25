@@ -66,6 +66,7 @@ endif ()
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     add_compiler_flags (-Weverything)
     add_compiler_flags (-Qunused-arguments -fcolor-diagnostics)
+    add_compiler_flags (-Wno-global-constructors)
 
     if (${CMAKE_CXX_STANDARD} MATCHES "11|14" AND
         ${CMAKE_CXX_STANDARD_REQUIRED})

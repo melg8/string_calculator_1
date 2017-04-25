@@ -4,3 +4,5 @@ int StringCalculator::Add(const std::string& numbers) {
   (void)numbers;
   return -1;
 }
+
+void StringCalculator::Test() {}

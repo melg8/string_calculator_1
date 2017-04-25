@@ -14,7 +14,7 @@ add_executable (string_calculator_tests
                 "${ALL_STRING_CALCULATOR_TESTS_APPLICATION_SOURCES}")
 
 target_link_libraries (string_calculator_tests
-                       string_calculator
+                       string_calculator_core
                        ${GTEST_BOTH_LIBRARIES})
 
 add_test (string_calculator_tests string_calculator_tests)
