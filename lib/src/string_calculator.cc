@@ -2,7 +2,7 @@
 
 int StringCalculator::Add(const std::string& numbers) {
   (void)numbers;
-  return -1;
+  return 0;
 }
 
 void StringCalculator::Test() {}
