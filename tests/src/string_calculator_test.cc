@@ -57,3 +57,10 @@ TEST_F(StringCalculatorTest, AddReturnsSumOfNumbersWithCustomDelimiter) {
   int result = c.Add(numbers_with_delimiter);
   EXPECT_EQ(3, result);
 }
+
+TEST_F(StringCalculatorTest, AddThrowsOnNegativeNumber) {
+  const std::string negative_number = "-1";
+
+  StringCalculator c;
+  EXPECT_THROW(c.Add(negative_number), std::string);
+}

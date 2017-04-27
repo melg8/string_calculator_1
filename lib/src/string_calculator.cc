@@ -10,6 +10,7 @@ static const char kDefaultDelimeter = ',';
 int StringCalculator::Add(std::string numbers) {
   Normalize(&numbers);
   SplitNumbersBy(numbers, kDefaultDelimeter);
+  CheckForNegativeNumbers();
   return AddSplittedNumbers();
 }
 
@@ -58,6 +59,13 @@ void StringCalculator::SplitNumbersBy(const std::string& numbers,
   splitted_numbers_.clear();
   while (std::getline(ss, number, delimiter)) {
     splitted_numbers_.push_back(std::stoi(number));
+  }
+}
+
+void StringCalculator::CheckForNegativeNumbers() {
+  if (std::any_of(std::begin(splitted_numbers_), std::end(splitted_numbers_),
+                  [](const auto value) { return value < 0; })) {
+    throw std::string();
   }
 }
 

@@ -17,6 +17,7 @@ class StringCalculator {
                                 char new_delimiter);
 
   void SplitNumbersBy(const std::string& numbers, char delimiter);
+  void CheckForNegativeNumbers();
 
   int AddSplittedNumbers() const;
 
