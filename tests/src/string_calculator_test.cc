@@ -33,3 +33,11 @@ TEST_F(StringCalculatorTest, AddReturnsSumOfTwoNumbersString2) {
   int result = c.Add(two_numbers);
   EXPECT_EQ(5, result);
 }
+
+TEST_F(StringCalculatorTest, AddReturnsSumOfMultipleNumbersString) {
+  const std::string multiple_numbers = "1,2,3";
+
+  StringCalculator c;
+  int result = c.Add(multiple_numbers);
+  EXPECT_EQ(6, result);
+}

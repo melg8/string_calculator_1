@@ -1,11 +1,24 @@
 #include <string_calculator.h>
 
-int StringCalculator::Add(const std::string& numbers) try {
-  if (numbers.size() > 2) {
-    return std::stoi(std::string{numbers.at(0)}) +
-           std::stoi(std::string{numbers.at(2)});
+#include <numeric>
+#include <sstream>
+
+int StringCalculator::Add(const std::string& numbers) {
+  SplitNumbersBy(numbers, ',');
+  return AddSplittedNumbers();
+}
+
+void StringCalculator::SplitNumbersBy(const std::string& numbers,
+                                      char separator) {
+  std::istringstream ss(numbers);
+  std::string number;
+  splitted_numbers_.clear();
+  while (std::getline(ss, number, separator)) {
+    splitted_numbers_.push_back(std::stoi(number));
   }
-  return std::stoi(numbers);
-} catch (const std::exception&) {
-  return 0;
+}
+
+int StringCalculator::AddSplittedNumbers() const {
+  return std::accumulate(std::begin(splitted_numbers_),
+                         std::end(splitted_numbers_), 0);
 }
