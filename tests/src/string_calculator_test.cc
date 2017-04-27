@@ -18,10 +18,18 @@ TEST_F(StringCalculatorTest, AddReturnsValueOfSingleNumberString) {
   EXPECT_EQ(5, result);
 }
 
-TEST_F(StringCalculatorTest, AddReturnsSumOfTwoNumbersString) {
+TEST_F(StringCalculatorTest, AddReturnsSumOfTwoNumbersString1) {
   const std::string two_numbers = "1,2";
 
   StringCalculator c;
   int result = c.Add(two_numbers);
   EXPECT_EQ(3, result);
+}
+
+TEST_F(StringCalculatorTest, AddReturnsSumOfTwoNumbersString2) {
+  const std::string two_numbers = "3,2";
+
+  StringCalculator c;
+  int result = c.Add(two_numbers);
+  EXPECT_EQ(5, result);
 }
