@@ -4,16 +4,24 @@
 
 StringCalculatorTest::~StringCalculatorTest() = default;
 
-TEST_F(StringCalculatorTest, AddReturnZeroOnEmptyString) {
+TEST_F(StringCalculatorTest, AddReturnsZeroOnEmptyString) {
   StringCalculator c;
   int result = c.Add("");
   EXPECT_EQ(0, result);
 }
 
-TEST_F(StringCalculatorTest, AddReturnValueOfSingleNumberString) {
+TEST_F(StringCalculatorTest, AddReturnsValueOfSingleNumberString) {
   const std::string single_number = "5";
 
   StringCalculator c;
   int result = c.Add(single_number);
   EXPECT_EQ(5, result);
+}
+
+TEST_F(StringCalculatorTest, AddReturnsSumOfTwoNumbersString) {
+  const std::string two_numbers = "1,2";
+
+  StringCalculator c;
+  int result = c.Add(two_numbers);
+  EXPECT_EQ(3, result);
 }
