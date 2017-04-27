@@ -5,23 +5,58 @@
 #include <numeric>
 #include <sstream>
 
+static const char kDefaultDelimeter = ',';
+
 int StringCalculator::Add(std::string numbers) {
-  ReplaceNewLines(&numbers);
-  SplitNumbersBy(numbers, ',');
+  Normalize(&numbers);
+  SplitNumbersBy(numbers, kDefaultDelimeter);
   return AddSplittedNumbers();
 }
 
-void StringCalculator::ReplaceNewLines(std::string* numbers) {
+void StringCalculator::Normalize(std::string* numbers) {
   assert(numbers);
-  std::replace(std::begin(*numbers), std::end(*numbers), '\n', ',');
+  ReplaceCustomDelimiters(numbers, kDefaultDelimeter);
+  ReplaceDelimiters(numbers, '\n', kDefaultDelimeter);
+}
+
+void StringCalculator::ReplaceDelimiters(std::string* numbers,
+                                         char old_delimiter,
+                                         char new_delimiter) {
+  assert(numbers);
+  std::replace(std::begin(*numbers), std::end(*numbers), old_delimiter,
+               new_delimiter);
+}
+
+void StringCalculator::ReplaceCustomDelimiters(std::string* numbers,
+                                               char new_delimiter) {
+  assert(numbers);
+  if (ContainsCustomDelimiter(*numbers)) {
+    const auto custom_delimiter = SeparateCustomDelimiter(numbers);
+    ReplaceDelimiters(numbers, custom_delimiter, new_delimiter);
+  }
+}
+
+char StringCalculator::SeparateCustomDelimiter(std::string* numbers) {
+  assert(numbers);
+  const auto delimiter = numbers->at(2);
+  *numbers = numbers->substr(4, numbers->size());
+
+  return delimiter;
+}
+
+bool StringCalculator::ContainsCustomDelimiter(const std::string& numbers) {
+  if (numbers.size() < 3) {
+    return false;
+  }
+  return numbers[0] == '/' && numbers[1] == '/';
 }
 
 void StringCalculator::SplitNumbersBy(const std::string& numbers,
-                                      char separator) {
+                                      char delimiter) {
   std::istringstream ss(numbers);
   std::string number;
   splitted_numbers_.clear();
-  while (std::getline(ss, number, separator)) {
+  while (std::getline(ss, number, delimiter)) {
     splitted_numbers_.push_back(std::stoi(number));
   }
 }

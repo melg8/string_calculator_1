@@ -49,3 +49,11 @@ TEST_F(StringCalculatorTest, AddReturnsSumOfNewLineSeparatedNumbersString) {
   int result = c.Add(multiple_numbers);
   EXPECT_EQ(6, result);
 }
+
+TEST_F(StringCalculatorTest, AddReturnsSumOfNumbersWithCustomDelimiter) {
+  const std::string numbers_with_delimiter = "//;\n1;2";
+
+  StringCalculator c;
+  int result = c.Add(numbers_with_delimiter);
+  EXPECT_EQ(3, result);
+}
