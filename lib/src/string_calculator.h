@@ -4,9 +4,11 @@
 
 class StringCalculator {
  public:
-  int Add(const std::string& numbers);
+  int Add(std::string numbers);
 
  private:
+  static void ReplaceNewLines(std::string* numbers);
+
   void SplitNumbersBy(const std::string& numbers, char separator);
 
   int AddSplittedNumbers() const;

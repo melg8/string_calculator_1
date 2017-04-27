@@ -41,3 +41,11 @@ TEST_F(StringCalculatorTest, AddReturnsSumOfMultipleNumbersString) {
   int result = c.Add(multiple_numbers);
   EXPECT_EQ(6, result);
 }
+
+TEST_F(StringCalculatorTest, AddReturnsSumOfNewLineSeparatedNumbersString) {
+  const std::string multiple_numbers = "1\n2,3";
+
+  StringCalculator c;
+  int result = c.Add(multiple_numbers);
+  EXPECT_EQ(6, result);
+}

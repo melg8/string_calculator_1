@@ -1,11 +1,19 @@
 #include <string_calculator.h>
 
+#include <algorithm>
+#include <cassert>
 #include <numeric>
 #include <sstream>
 
-int StringCalculator::Add(const std::string& numbers) {
+int StringCalculator::Add(std::string numbers) {
+  ReplaceNewLines(&numbers);
   SplitNumbersBy(numbers, ',');
   return AddSplittedNumbers();
+}
+
+void StringCalculator::ReplaceNewLines(std::string* numbers) {
+  assert(numbers);
+  std::replace(std::begin(*numbers), std::end(*numbers), '\n', ',');
 }
 
 void StringCalculator::SplitNumbersBy(const std::string& numbers,
